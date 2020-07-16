@@ -1,8 +1,7 @@
 <script>
     import { EXAMPLES } from "../../src/toast.constants";
-    import Toast from "../../src/Toast.svelte";
     import shortid from "shortid";
-    import { toast } from "../../src/toast";
+    import { toast, ToastContainer } from "../../src";
 
     const indexMap = {
         success: 0,
@@ -61,5 +60,5 @@
     <button name="danger" on:click={hanldleOnClick}>Danger</button>
     <button name="info" on:click={hanldleOnClick}>Info</button>
     <button name="warning" on:click={hanldleOnClick}>Warning</button>
-    <Toast position="bottom-right" />
+    <ToastContainer position="bottom-right" />
 </main>

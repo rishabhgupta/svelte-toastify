@@ -1,5 +1,5 @@
 <script>
-    import { toast } from "./toast";
+    import toast from "./toast";
 
     /** position of the toasts on the sreen */
     export let position;

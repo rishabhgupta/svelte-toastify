@@ -81,4 +81,5 @@ const Singleton = () => {
     return instance;
 }
 
-export const toast = Singleton();
+const toast = Singleton();
+export default toast;

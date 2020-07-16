@@ -4,6 +4,7 @@ import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 import image from '@rollup/plugin-image';
 import commonjs from '@rollup/plugin-commonjs';
+import builtins from 'rollup-plugin-node-builtins';
 
 
 const name = pkg.name
@@ -13,6 +14,7 @@ const name = pkg.name
 
 export default {
 	input: 'src/index.js',
+	browser: true,
 	output: [
 		{ file: pkg.module, 'format': 'es' },
 		{ file: pkg.main, 'format': 'umd', name },
@@ -21,6 +23,7 @@ export default {
 	plugins: [
 		svelte(),
 		resolve(),
+		builtins(),
 		image(),
 		commonjs()
 	]
