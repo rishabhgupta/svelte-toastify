@@ -1,3 +1,4 @@
 # Svelte Toastify
+> Under development *DO NOT USE*
 
-Toast Library for svelteREADME.md
+Toast Library for svelte
