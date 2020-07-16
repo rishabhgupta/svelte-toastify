@@ -1,6 +1,6 @@
 {
   "name": "svelte-toastify",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
@@ -39,7 +39,8 @@
     "svelte"
   ],
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "dependencies": {
     "shortid": "^2.2.15"
