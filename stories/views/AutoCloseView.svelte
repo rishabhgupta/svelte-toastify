@@ -1,23 +1,31 @@
 <script>
     import { toast, ToastContainer } from "../../src";
 
-    toast.configure({ position: "top-left" });
+    let timeValue = 3000;
+
+    toast.configure({ position: "top-right" });
+
+    const handleTimeValueChange = (e) => {
+        timeValue = e.target.value;
+    };
 
     const hanldleOnClick = (e) => {
         if (e.target.name === "success") {
-            toast.success("This is a success message");
+            toast.success("This is a success message", {
+                autoClose: timeValue,
+            });
         }
 
         if (e.target.name === "danger") {
-            toast.error("This is an error message");
+            toast.error("This is an error message", { autoClose: timeValue });
         }
 
         if (e.target.name === "info") {
-            toast.info("This is an info message");
+            toast.info("This is an info message", { autoClose: timeValue });
         }
 
         if (e.target.name === "warning") {
-            toast.warn("This is an warning message");
+            toast.warn("This is an warning message", { autoClose: timeValue });
         }
     };
 </script>
@@ -46,7 +54,8 @@
 
 <main>
     <h1>Svelte Toastify</h1>
-    <p>Click on the button to see the toast</p>
+    <p>Enter the duration after which the toast should disappear in ms.</p>
+    <input label="time" value={timeValue} on:change={handleTimeValueChange} />
     <button name="success" on:click={hanldleOnClick}>Success</button>
     <button name="danger" on:click={hanldleOnClick}>Danger</button>
     <button name="info" on:click={hanldleOnClick}>Info</button>

@@ -4,11 +4,27 @@
     export let description;
     export let backgroundColor;
     export let onClose;
+    export let autoClose;
     // export let icon;
 
     export let position;
     import image from "./assets/check.svg";
     import CloseButton from "./helpers/CloseButton.svelte";
+    import { onDestroy, onMount, createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
+    let deleteTimeOut;
+
+    onMount(() => {
+        if (autoClose) {
+            deleteTimeOut = setTimeout(() => {
+                dispatch("delete", { id });
+                if (onClose) {
+                    onClose(id);
+                }
+            }, autoClose);
+        }
+    });
 
     const getClassNames = () => {
         if (position === "top-right" || position === "bottom-right") {

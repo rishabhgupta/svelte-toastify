@@ -1,9 +1,6 @@
 <script>
     import toast from "./toast";
 
-    /** position of the toasts on the sreen */
-    export let position;
-
     import { toastStore } from "./toast.store";
 
     import ToastItem from "./ToastItem.svelte";
@@ -49,16 +46,17 @@
     }
 </style>
 
-<div class={getClassNames(toast.position)}>
-    {#each toastStoreValue as toast}
+<div class={getClassNames(toast.config.position)}>
+    {#each toastStoreValue as toastr}
         <ToastItem
-            id={toast.id}
-            title={toast.title}
-            description={toast.description}
-            backgroundColor={toast.color}
-            icon={toast.icon}
+            id={toastr.id}
+            title={toastr.title}
+            description={toastr.description}
+            backgroundColor={toastr.color}
+            icon={toastr.icon}
             on:delete={onDelete}
-            {position}
-            onClose={toast.onClose} />
+            position={toast.config.position}
+            onClose={toastr.onClose}
+            autoClose={toastr.autoClose} />
     {/each}
 </div>

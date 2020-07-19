@@ -11,11 +11,18 @@ let instance = null;
 class Toast {
 
     constructor() {
+        this.config = {
+            position: "botton-right",
+            autoClose: false,
+        }
         this.position = "botton-right";
     }
 
-    config(position) {
-        this.position = position;
+    configure(configObj) {
+        this.config = {
+            ...this.config,
+            ...configObj,
+        }
     }
 
     success(msg, options) {
