@@ -1,12 +1,11 @@
-interface IToast {
+export interface IToast {
     id: string;
     title: string;
     description: string;
     backgroundColor: string;
     icon: string;
-    on: Function;
+    onClose: Function;
     position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
     autoClose: number | null;
+    color: string;
 }
-
-export { IToast }; 

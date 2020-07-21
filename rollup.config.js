@@ -8,7 +8,7 @@ import builtins from 'rollup-plugin-node-builtins';
 // add typescript plugin to imports
 import typescript from '@rollup/plugin-typescript';
 // import preprocess
-import preprocess from `svelte-preprocess`;
+import preprocess from 'svelte-preprocess';
 
 
 const name = pkg.name

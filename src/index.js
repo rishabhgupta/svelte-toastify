@@ -1,2 +1,2 @@
-export { default as toast } from './toast';
-export { default as ToastContainer } from './Toast.svelte';
+export { default as toast } from './toast.ts';
+export { default as ToastContainer } from './Toastr.svelte';

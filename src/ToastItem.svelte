@@ -1,4 +1,4 @@
-<script>
+<script lang="typescript">
     export let id;
     export let title;
     export let description;
