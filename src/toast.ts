@@ -5,27 +5,34 @@ import successImage from "./assets/check.svg";
 import errorImage from "./assets/error.svg";
 import infoImage from "./assets/info.svg"
 import warningImage from "./assets/warning.svg";
+import { IToast } from './toast.interface';
 
-let instance = null;
+let instance: Toast | null = null;
+
+interface IConfig {
+    position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
+    autoClose: number
+}
 
 class Toast {
+    
+    config: IConfig;
 
     constructor() {
         this.config = {
-            position: "botton-right",
-            autoClose: false,
+            position: "bottom-right",
+            autoClose: null,
         }
-        this.position = "botton-right";
     }
 
-    configure(configObj) {
+    configure(configObj: IConfig) {
         this.config = {
             ...this.config,
             ...configObj,
         }
     }
 
-    success(msg, options) {
+    success(msg: string, options: IToast) {
         options = {
             ...options,
             id: shortid.generate(),
