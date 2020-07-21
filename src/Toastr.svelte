@@ -1,15 +1,14 @@
-<script>
+<script lang="typescript">
     import toast from "./toast";
-
     import { toastStore } from "./toast.store";
-
     import ToastItem from "./ToastItem.svelte";
+    import type { IToast } from "./toast.interface";
 
-    let toastStoreValue;
-
-    const getClassNames = (pos) => {
+    const getClassNames = (pos: string) => {
         return `toast-container toast-container--${pos}`;
     };
+
+    let toastStoreValue;
 
     const unsubscribe = toastStore.subscribe((value) => {
         toastStoreValue = value;

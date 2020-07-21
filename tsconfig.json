@@ -1,0 +1,20 @@
+{
+    "include": [
+        "src/**/*",
+        "@types/index.d.ts"
+    ],
+    "exclude": [
+        "node_modules/*",
+        "stories/*"
+    ],
+    "compilerOptions": {
+        "target": "es2017",
+        "types": [
+            "svelte"
+        ],
+        "moduleResolution": "node"
+    },
+    "files": [
+        "@types/index.d.ts"
+    ]
+}
