@@ -1,20 +1,16 @@
-import { toastStore } from './toast.store';
+import { toastStore } from './store/toast.store';
 import successImage from "./assets/check.svg";
 import errorImage from "./assets/error.svg";
 import infoImage from "./assets/info.svg"
 import warningImage from "./assets/warning.svg";
+import { generateToastId } from "./utils/helper";
+import { ConfigurationOptions, ToastOptions } from './utils/types';
 
-
-let instance;
-
-/**
- * Generate a random toastId
- */
-function generateToastId() {
-    return (Math.random().toString(36) + Date.now().toString(36)).substr(2, 10);
-}
+let instance: Toast;
 
 class Toast {
+
+    private config: ConfigurationOptions;
 
     constructor() {
         this.config = {
@@ -23,19 +19,19 @@ class Toast {
         }
     }
 
-    configure(configObj) {
+    configure(configObj: ConfigurationOptions) {
         this.config = {
             ...this.config,
             ...configObj,
         }
     }
 
-    success(msg, options) {
+    success(msg: string, options: ToastOptions) {
         options = {
             ...options,
-            id: generateToastId(),
+            toastId: generateToastId(),
             title: "Success",
-            description: msg,
+            body: msg,
             color: "#5cb85c",
             icon: successImage,
             onClose: (id) => console.log('Closed', id)
@@ -44,12 +40,12 @@ class Toast {
         toastStore.add(options);
     }
 
-    error(msg, options) {
+    error(msg: string, options: ToastOptions) {
         options = {
             ...options,
-            id: generateToastId(),
+            toastId: generateToastId(),
             title: "Danger",
-            description: msg,
+            body: msg,
             icon: errorImage,
             color: "#d9534f",
         }
@@ -57,12 +53,12 @@ class Toast {
         toastStore.add(options);
     }
 
-    warn(msg, options) {
+    warn(msg: string, options: ToastOptions) {
         options = {
             ...options,
-            id: generateToastId(),
+            toastId: generateToastId(),
             title: "Warning",
-            description: msg,
+            body: msg,
             icon: warningImage,
             color: "#f0ad4e",
         }
@@ -70,12 +66,12 @@ class Toast {
         toastStore.add(options);
     }
 
-    info(msg, options) {
+    info(msg: string, options: ToastOptions) {
         options = {
             ...options,
-            id: generateToastId(),
+            toastId: generateToastId(),
             title: "Info",
-            description: msg,
+            body: msg,
             icon: infoImage,
             color: "#5bc0de",
         }

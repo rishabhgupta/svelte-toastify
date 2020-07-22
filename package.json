@@ -1,6 +1,6 @@
 {
   "name": "svelte-toastify",
-  "version": "0.0.11",
+  "version": "0.0.14",
   "module": "dist/index.mjs",
   "main": "dist/index.mjs",
   "scripts": {
@@ -24,6 +24,7 @@
     "@storybook/svelte": "^5.3.19",
     "@testing-library/jest-dom": "^5.3.0",
     "@testing-library/svelte": "^3.0.0",
+    "@tsconfig/svelte": "^1.0.2",
     "@types/jest": "^26.0.5",
     "babel-jest": "^25.2.6",
     "babel-loader": "^8.1.0",
@@ -37,6 +38,7 @@
     "rollup-plugin-svelte": "^5.0.0",
     "rollup-plugin-terser": "^5.3.0",
     "svelte": "^3.20.1",
+    "svelte-check": "^0.1.55",
     "svelte-jester": "^1.0.5",
     "svelte-loader": "^2.13.6",
     "svelte-preprocess": "^4.0.8",

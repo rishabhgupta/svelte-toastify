@@ -5,11 +5,11 @@
     export let backgroundColor;
     export let onClose;
     export let autoClose;
-    // export let icon;
+    export let icon;
 
     export let position;
-    import image from "./assets/check.svg";
-    import CloseButton from "./helpers/CloseButton.svelte";
+    import image from "../assets/check.svg";
+    import CloseButton from "./CloseButton.svelte";
     import { onDestroy, onMount, createEventDispatcher } from "svelte";
 
     const dispatch = createEventDispatcher();
@@ -122,7 +122,7 @@
 <div class={getClassNames()} style="background-color: {backgroundColor}">
     <CloseButton {id} on:delete {onClose} />
     <div class="toast-item__image">
-        <img src={image} alt="icon" />
+        <img src={icon} alt="icon" />
     </div>
     <div>
         <p class="toast-item__title">{title}</p>

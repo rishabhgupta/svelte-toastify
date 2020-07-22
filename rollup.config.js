@@ -1,14 +1,12 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
-import { terser } from 'rollup-plugin-terser';
-import pkg from './package.json';
 import image from '@rollup/plugin-image';
 import commonjs from '@rollup/plugin-commonjs';
-import builtins from 'rollup-plugin-node-builtins';
 import babel from 'rollup-plugin-babel'
 // add typescript plugin to imports
 // import preprocess
 import preprocess from 'svelte-preprocess';
+import typescript from '@rollup/plugin-typescript';
 
 
 export default {
@@ -23,7 +21,7 @@ export default {
 			extensions: [".svelte"],
 			preprocess: preprocess()
 		}),
-
+		typescript(),
 		resolve(),
 		babel({
 			exclude: ['node_modules/**']
