@@ -2,7 +2,6 @@
     import toast from "./toast";
     import { toastStore } from "./toast.store";
     import ToastItem from "./ToastItem.svelte";
-    import type { IToast } from "./toast.interface";
 
     const getClassNames = (pos: string) => {
         return `toast-container toast-container--${pos}`;

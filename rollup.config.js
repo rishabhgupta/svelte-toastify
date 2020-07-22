@@ -6,7 +6,6 @@ import image from '@rollup/plugin-image';
 import commonjs from '@rollup/plugin-commonjs';
 import builtins from 'rollup-plugin-node-builtins';
 // add typescript plugin to imports
-import typescript from '@rollup/plugin-typescript';
 // import preprocess
 import preprocess from 'svelte-preprocess';
 
@@ -29,7 +28,6 @@ export default {
 			extensions: [".svelte"],
 			preprocess: preprocess()
 		}),
-		typescript(),
 		resolve(),
 		builtins(),
 		image(),

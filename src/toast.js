@@ -5,18 +5,12 @@ import successImage from "./assets/check.svg";
 import errorImage from "./assets/error.svg";
 import infoImage from "./assets/info.svg"
 import warningImage from "./assets/warning.svg";
-import { IToast } from './toast.interface';
 
-let instance: Toast | null = null;
 
-interface IConfig {
-    position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
-    autoClose: number
-}
+let instance;
+
 
 class Toast {
-    
-    config: IConfig;
 
     constructor() {
         this.config = {
@@ -25,14 +19,14 @@ class Toast {
         }
     }
 
-    configure(configObj: IConfig) {
+    configure(configObj) {
         this.config = {
             ...this.config,
             ...configObj,
         }
     }
 
-    success(msg: string, options: IToast) {
+    success(msg, options) {
         options = {
             ...options,
             id: shortid.generate(),
