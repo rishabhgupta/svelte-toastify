@@ -1,6 +1,6 @@
 <script>
-    import toast from "./toast";
-    import { toastStore } from "./toast.store";
+    import toast from "../toast";
+    import { toastStore } from "../store/toast.store";
     import ToastItem from "./ToastItem.svelte";
 
     const getClassNames = (pos) => {
@@ -49,7 +49,7 @@
         <ToastItem
             id={toastr.id}
             title={toastr.title}
-            description={toastr.description}
+            description={toastr.body}
             backgroundColor={toastr.color}
             icon={toastr.icon}
             on:delete={onDelete}
