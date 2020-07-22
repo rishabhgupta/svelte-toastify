@@ -1,9 +1,8 @@
 {
   "name": "svelte-toastify",
-  "version": "0.0.5",
-  "svelte": "src/index.js",
+  "version": "0.0.10",
   "module": "dist/index.mjs",
-  "main": "dist/index.js",
+  "main": "dist/index.mjs",
   "scripts": {
     "build": "rollup -c",
     "prepublishOnly": "npm run build",
@@ -32,6 +31,7 @@
     "jest": "^25.5.4",
     "react-docgen-typescript-loader": "^3.7.2",
     "rollup": "^2.21.0",
+    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-svelte": "^5.0.0",
@@ -51,7 +51,5 @@
     "dist",
     "src"
   ],
-  "dependencies": {
-    "shortid": "^2.2.15"
-  }
+  "dependencies": {}
 }

@@ -1,9 +1,9 @@
-<script lang="typescript">
+<script>
     import toast from "./toast";
     import { toastStore } from "./toast.store";
     import ToastItem from "./ToastItem.svelte";
 
-    const getClassNames = (pos: string) => {
+    const getClassNames = (pos) => {
         return `toast-container toast-container--${pos}`;
     };
 

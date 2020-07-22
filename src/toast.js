@@ -1,6 +1,4 @@
 import { toastStore } from './toast.store';
-import shortid from 'shortid';
-
 import successImage from "./assets/check.svg";
 import errorImage from "./assets/error.svg";
 import infoImage from "./assets/info.svg"
@@ -9,6 +7,12 @@ import warningImage from "./assets/warning.svg";
 
 let instance;
 
+/**
+ * Generate a random toastId
+ */
+function generateToastId() {
+    return (Math.random().toString(36) + Date.now().toString(36)).substr(2, 10);
+}
 
 class Toast {
 
@@ -29,7 +33,7 @@ class Toast {
     success(msg, options) {
         options = {
             ...options,
-            id: shortid.generate(),
+            id: generateToastId(),
             title: "Success",
             description: msg,
             color: "#5cb85c",
@@ -43,7 +47,7 @@ class Toast {
     error(msg, options) {
         options = {
             ...options,
-            id: shortid.generate(),
+            id: generateToastId(),
             title: "Danger",
             description: msg,
             icon: errorImage,
@@ -56,7 +60,7 @@ class Toast {
     warn(msg, options) {
         options = {
             ...options,
-            id: shortid.generate(),
+            id: generateToastId(),
             title: "Warning",
             description: msg,
             icon: warningImage,
@@ -69,7 +73,7 @@ class Toast {
     info(msg, options) {
         options = {
             ...options,
-            id: shortid.generate(),
+            id: generateToastId(),
             title: "Info",
             description: msg,
             icon: infoImage,
