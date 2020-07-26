@@ -42,18 +42,20 @@
         pointer-events: auto;
         overflow: hidden;
         margin: 0 0 6px;
-        padding: 18px 20px;
+        padding: 15px 15px;
         margin-bottom: 15px;
         width: 300px;
-        height: 40px;
+        height: auto;
         max-height: 100px;
-        border-radius: 10px 10px 10px 10px;
+        border-radius: 5px 5px 5px 5px;
         box-shadow: 0 0 10px #999;
         color: #000;
         opacity: 0.9;
         background-position: 15px;
         background-repeat: no-repeat;
         color: #fff;
+        display: flex;
+        align-items: center;
     }
 
     .animate-right {
@@ -66,19 +68,28 @@
         animation: toast-in-left 0.7s;
     }
     .toast-item:hover {
-        box-shadow: 0 0 12px #fff;
+        box-shadow: 0 0 12px #aaa;
         opacity: 1;
         cursor: pointer;
     }
 
     .toast-item__image {
-        float: left;
-        margin-right: 15px;
+        flex: 0 1 30px;
+        margin-right: 10px;
     }
 
     .toast-item__image img {
         width: 30px;
         height: 30px;
+    }
+
+    .toast-item__body {
+        flex: 4;
+    }
+
+    .toast-item__buttons {
+        flex: 0 1 10px;
+        align-self: baseline;
     }
 
     .toast-item__title {
@@ -87,18 +98,13 @@
         text-align: left;
         margin-top: 0;
         margin-bottom: 6px;
-        width: 300px;
         height: 18px;
     }
 
     .toast-item__message {
         margin: 0;
         text-align: left;
-        height: 18px;
-        margin-left: -1px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        width: 100%;
     }
     @keyframes toast-in-right {
         from {
@@ -120,12 +126,19 @@
 </style>
 
 <div class={getClassNames()} style="background-color: {backgroundColor}">
-    <CloseButton {id} on:delete {onClose} />
-    <div class="toast-item__image">
-        <img src={icon} alt="icon" />
-    </div>
-    <div>
-        <p class="toast-item__title">{title}</p>
+    {#if icon}
+        <div class="toast-item__image">
+            <img src={icon} alt="icon" />
+        </div>
+    {/if}
+    <div class="toast-item__body">
+        {#if title}
+            <p class="toast-item__title">{title}</p>
+        {/if}
         <p class="toast-item__message">{description}</p>
     </div>
+    <div class="toast-item__buttons">
+        <CloseButton {id} on:delete {onClose} />
+    </div>
+
 </div>
