@@ -2,7 +2,7 @@ const autoPreprocess = require('svelte-preprocess');
 
 module.exports = {
   stories: ['../stories/**/*.stories.(js|tsx)'],
-  addons: ['@storybook/addon-actions', '@storybook/addon-links'],
+  addons: ['@storybook/addon-links'],
   webpackFinal: async config => {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
