@@ -47,7 +47,7 @@
 <div class={getClassNames(toast.config.position)}>
     {#each toastStoreValue as toastr}
         <ToastItem
-            id={toastr.id}
+            id={toastr.toastId}
             title={toastr.title}
             description={toastr.body}
             backgroundColor={toastr.color}
