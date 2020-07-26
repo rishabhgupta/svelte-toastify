@@ -13,7 +13,7 @@ import { writable } from 'svelte/store';
 function Store() {
     const { subscribe, set, update } = writable([]);
 
-    function add(toastObj) {    
+    function add(toastObj) {
         update(list => {
             return [...list, toastObj];
         });
@@ -21,7 +21,7 @@ function Store() {
 
     function remove(id) {
         update(list => {
-            const index = list.findIndex((e) => e.id === id);
+            const index = list.findIndex((e) => e.toastId === id);
             list.splice(index, 1);
             return [...list];
         })

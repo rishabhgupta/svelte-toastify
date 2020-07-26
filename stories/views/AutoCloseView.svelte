@@ -25,7 +25,9 @@
         }
 
         if (e.target.name === "warning") {
-            toast.warn("This is an warning message", { autoClose: timeValue });
+            toast.warning("This is an warning message", {
+                autoClose: timeValue,
+            });
         }
     };
 </script>

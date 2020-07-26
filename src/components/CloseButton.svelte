@@ -16,8 +16,6 @@
 <style>
     button {
         position: relative;
-        right: -0.3em;
-        top: -0.3em;
         float: right;
         font-weight: 700;
         color: #fff;

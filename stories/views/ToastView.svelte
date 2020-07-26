@@ -1,23 +1,27 @@
 <script>
     import { toast, ToastContainer } from "../../src";
 
-    toast.configure({ position: "top-left" });
+    toast.configure({
+        position: toast.POSITION.TOP_RIGHT,
+    });
 
     const hanldleOnClick = (e) => {
         if (e.target.name === "success") {
-            toast.success("This is a success message");
+            toast.success("This is a success message.");
         }
 
         if (e.target.name === "danger") {
-            toast.error("This is an error message");
+            toast.error("This is an error message", {
+                icon: true,
+            });
         }
 
         if (e.target.name === "info") {
-            toast.info("This is an info message");
+            toast.info("This is an info message", { icon: true });
         }
 
         if (e.target.name === "warning") {
-            toast.warn("This is an warning message");
+            toast.warning("This is an warning message", { icon: true });
         }
     };
 </script>
@@ -28,6 +32,7 @@
         padding: 1em;
         max-width: 240px;
         margin: 0 auto;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
     h1 {
