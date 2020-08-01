@@ -30,6 +30,19 @@
         background: 0 0;
         border: 0;
     }
+
+    svg {
+        fill: currentColor;
+        height: 16px;
+        width: 14px;
+    }
 </style>
 
-<button type="button" aria-label="close" on:click={onClickHandler}>X</button>
+<button type="button" aria-label="close" on:click={onClickHandler}>
+    <svg aria-hidden="true" viewBox="0 0 14 16">
+        <path
+            fillRule="evenodd"
+            d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1
+            11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75 3.75z" />
+    </svg>
+</button>

@@ -15,7 +15,7 @@
 
     const onDelete = (e) => {
         const { id } = e.detail;
-        toastStore.remove(id);
+        toast.delete(id);
     };
 </script>
 

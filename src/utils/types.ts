@@ -26,6 +26,12 @@ export interface ConfigurationOptions {
      * `Default: 5000`
      */
     autoClose?: number | false;
+    /**
+     * If true prevents duplicate toasts 
+     * uses toastid to check if the toast is currently being displayed by the same id.
+     * Default: false
+     */
+    preventDuplicate?: boolean;
 }
 
 export interface ToastOptions extends ConfigurationOptions {
