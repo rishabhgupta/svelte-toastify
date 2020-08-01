@@ -12,6 +12,8 @@ let instance: Toast;
 class Toast {
 
     private config: ConfigurationOptions;
+    private idMap: { [key: string]: boolean };
+
     POSITION = POSITION;
     TYPE = TYPE;
 
@@ -19,6 +21,7 @@ class Toast {
         this.config = {
             position: this.POSITION.BOTTOM_RIGHT,
             autoClose: 5000,
+            preventDuplicate: false,
             [this.TYPE.SUCCESS]: {
                 color: "#5cb85c",
                 icon: successImage,
@@ -36,6 +39,16 @@ class Toast {
                 icon: infoImage,
             }
         }
+        this.idMap = {};
+    }
+
+    private validateOptions(options: ToastOptions): boolean {
+        // if prevent duplicate is true and toastid is present
+        if (this.config.preventDuplicate && options.toastId) {
+            // check if the given toastid exists in the map
+            return this.idMap[options.toastId] === undefined;
+        }
+        return true;
     }
 
     private mergeOptions(type: string, options: ToastOptions): ToastOptions {
@@ -43,12 +56,14 @@ class Toast {
             ...options,
             autoClose: options.autoClose !== undefined ? options.autoClose : this.config.autoClose,
             color: options.color ? options.color : this.config[type].color,
-            toastId: generateToastId(),
+            toastId: options.toastId ? options.toastId : generateToastId(),
         }
 
         if (options.icon === true) {
             options.icon = this.config[type].icon;
         }
+
+        this.idMap[options.toastId] = true;
         return options;
     }
 
@@ -60,6 +75,10 @@ class Toast {
     }
 
     success(msg: string, options: ToastOptions) {
+        if (options && !this.validateOptions(options)) {
+            return;
+        }
+
         options = this.mergeOptions(this.TYPE.SUCCESS, {
             ...options,
             body: msg
@@ -68,6 +87,10 @@ class Toast {
     }
 
     error(msg: string, options: ToastOptions) {
+        if (options && !this.validateOptions(options)) {
+            return;
+        }
+
         options = this.mergeOptions(this.TYPE.ERROR, {
             ...options,
             body: msg
@@ -77,6 +100,10 @@ class Toast {
     }
 
     warning(msg: string, options: ToastOptions) {
+        if (options && !this.validateOptions(options)) {
+            return;
+        }
+
         options = this.mergeOptions(this.TYPE.WARNING, {
             ...options,
             body: msg
@@ -86,12 +113,23 @@ class Toast {
     }
 
     info(msg: string, options: ToastOptions) {
+        if (options && !this.validateOptions(options)) {
+            return;
+        }
+
         options = this.mergeOptions(this.TYPE.INFO, {
             ...options,
             body: msg
         });
 
         toastStore.add(options);
+    }
+
+    delete(toastId: string) {
+        // remove the toastid from map
+        delete this.idMap[toastId];
+        // delete toast from store
+        toastStore.remove(toastId);
     }
 }
 

@@ -1,5 +1,6 @@
 import ToastView from './views/ToastView.svelte'
 import AutoCloseView from './views/AutoCloseView.svelte';
+import PreventDuplicateView from './views/PreventDuplicateView.svelte';
 
 export default {
     title: 'Toast',
@@ -14,4 +15,9 @@ export const Basic = () => ({
 export const AutoClose = () => ({
     title: 'Auto Close',
     Component: AutoCloseView,
+});
+
+export const PreventDuplicate = () => ({
+    title: 'Prevent Duplicate',
+    Component: PreventDuplicateView,
 });
