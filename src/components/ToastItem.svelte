@@ -1,10 +1,10 @@
 <script>
     export let id;
     export let title;
-    export let description;
     export let backgroundColor;
     export let onClose;
     export let autoClose;
+    export let closeButton;
     export let icon;
 
     export let position;
@@ -135,10 +135,12 @@
         {#if title}
             <p class="toast-item__title">{title}</p>
         {/if}
-        <p class="toast-item__message">{description}</p>
+        <slot />
     </div>
-    <div class="toast-item__buttons">
-        <CloseButton {id} on:delete {onClose} />
-    </div>
+    {#if closeButton}
+        <div class="toast-item__buttons">
+            <CloseButton {id} on:delete {onClose} {closeButton} />
+        </div>
+    {/if}
 
 </div>

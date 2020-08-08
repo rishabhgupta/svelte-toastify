@@ -42,6 +42,11 @@
         bottom: 12px;
         left: 12px;
     }
+    .toast-item__message {
+        margin: 0;
+        text-align: left;
+        width: 100%;
+    }
 </style>
 
 <div class={getClassNames(toast.config.position)}>
@@ -49,12 +54,20 @@
         <ToastItem
             id={toastr.toastId}
             title={toastr.title}
-            description={toastr.body}
             backgroundColor={toastr.color}
             icon={toastr.icon}
             on:delete={onDelete}
             position={toast.config.position}
             onClose={toastr.onClose}
-            autoClose={toastr.autoClose} />
+            autoClose={toastr.autoClose}
+            closeButton={toastr.closeButton}>
+            <slot>
+                {#if typeof toastr.body === 'string'}
+                    <p class="toast-item__message">{toastr.body}</p>
+                {:else}
+                    <svelte:component this={toastr.body} />
+                {/if}
+            </slot>
+        </ToastItem>
     {/each}
 </div>

@@ -32,6 +32,12 @@ export interface ConfigurationOptions {
      * Default: false
      */
     preventDuplicate?: boolean;
+    /**
+     * closeButton
+     * if false hides the close button
+     * if custom function renders the custom button
+     */
+    closeButton?: boolean | Function;
 }
 
 export interface ToastOptions extends ConfigurationOptions {
@@ -52,7 +58,7 @@ export interface ToastOptions extends ConfigurationOptions {
      * Body of the toast
      * @todo Add slot support
      */
-    body: string;
+    body?: string | Function;
     /**
      * Overide color of a toast
      */
