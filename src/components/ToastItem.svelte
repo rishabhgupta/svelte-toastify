@@ -1,22 +1,22 @@
-<script lang="typescript">
+<script>
     /** id of the toast */
-    export let id: string;
+    export let id;
     /** title of the toast */
-    export let title: string;
+    export let title;
     /** hex code of the background color */
-    export let backgroundColor: string;
+    export let backgroundColor;
     /** callback function called on deletion of a toast */
-    export let onClose: Function | null;
+    export let onClose;
     /** number in milliseconds to show the toast for */
-    export let autoClose: number | false;
+    export let autoClose;
     /** render prop or false */
-    export let closeButton: Function | boolean;
+    export let closeButton;
     /** icon image or src link */
-    export let icon: any;
+    export let icon;
     /** additional class to be applied */
-    export let className: string;
+    export let className;
     /** position of the toast container */
-    export let position: string;
+    export let position;
 
     import image from "../assets/check.svg";
     import CloseButton from "./CloseButton.svelte";
