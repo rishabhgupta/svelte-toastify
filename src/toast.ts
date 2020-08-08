@@ -11,7 +11,7 @@ let instance: Toast;
 
 class Toast {
 
-    private config: ConfigurationOptions;
+    public config: ConfigurationOptions;
     private idMap: { [key: string]: boolean };
 
     POSITION = POSITION;

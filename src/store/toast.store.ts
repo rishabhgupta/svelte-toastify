@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import { ToastOptions } from '../utils/types';
 
 /**
  * Store will
@@ -13,13 +14,13 @@ import { writable } from 'svelte/store';
 function Store() {
     const { subscribe, set, update } = writable([]);
 
-    function add(toastObj) {
+    function add(toastObj: ToastOptions): void {
         update(list => {
             return [...list, toastObj];
         });
     }
 
-    function remove(id) {
+    function remove(id: string): void {
         update(list => {
             const index = list.findIndex((e) => e.toastId === id);
             list.splice(index, 1);

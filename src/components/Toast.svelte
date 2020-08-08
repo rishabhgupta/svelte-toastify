@@ -1,21 +1,18 @@
-<script>
-    export let className;
-
+<script lang="typescript">
     import toast from "../toast";
     import { toastStore } from "../store/toast.store";
     import ToastItem from "./ToastItem.svelte";
+    import { ToastPosition, ToastOptions } from "../utils/types";
 
-    const getClassNames = (pos) => {
+    const getClassNames = (pos: ToastPosition): string => {
         let classname = `toast-container toast-container--${pos}`;
-        if (className) {
-            className = `${classname} ${className}`;
-        } else if (toast.config.className) {
-            className = `${classname} ${toast.config.className}`;
+        if (toast.config.className) {
+            classname = `${classname} ${toast.config.className}`;
         }
-        return className;
+        return classname;
     };
 
-    let toastStoreValue;
+    let toastStoreValue: ToastOptions[];
 
     const unsubscribe = toastStore.subscribe((value) => {
         toastStoreValue = value;

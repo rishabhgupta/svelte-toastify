@@ -1,12 +1,20 @@
-<script>
-    export let id;
-    export let onClose;
-    export let closeButton;
+<script lang="typescript">
+    /** id of the toast */
+    export let id: string;
+    /** callback function if passed will be called when toast is closed */
+    export let onClose: Function;
+    /** render prop orm flase if passed will be rendered instead of X icon */
+    export let closeButton: Function | boolean;
 
     import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
 
-    const onClickHandler = () => {
+    /*
+     * on close button handler
+     * dispatch delete event with id to delete the toast
+     * if onClose callback is passed call that with toast id
+     */
+    const onClickHandler = (): void => {
         dispatch("delete", { id });
         if (onClose) {
             onClose(id);
@@ -45,7 +53,6 @@
     {:else}
         <svg aria-hidden="true" viewBox="0 0 14 16">
             <path
-                fillRule="evenodd"
                 d="M7.71 8.23l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75L1
                 11.98l3.75-3.75L1 4.48 2.48 3l3.75 3.75L9.98 3l1.48 1.48-3.75
                 3.75z" />
