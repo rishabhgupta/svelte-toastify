@@ -6,11 +6,13 @@
     export let autoClose;
     export let closeButton;
     export let icon;
+    export let className;
 
     export let position;
     import image from "../assets/check.svg";
     import CloseButton from "./CloseButton.svelte";
     import { onDestroy, onMount, createEventDispatcher } from "svelte";
+    import toast from "../toast";
 
     const dispatch = createEventDispatcher();
     let deleteTimeOut;
@@ -32,6 +34,14 @@
         }
         return "toast-item animate-left";
     };
+
+    const getBodyClassNames = () => {
+        let classname = "toast-item__body";
+        if (className) {
+            classname = `${classname} ${className}`;
+        }
+        return classname;
+    };
 </script>
 
 <style>
@@ -44,7 +54,6 @@
         margin: 0 0 6px;
         padding: 15px 15px;
         margin-bottom: 15px;
-        width: 300px;
         height: auto;
         max-height: 100px;
         border-radius: 5px 5px 5px 5px;
@@ -131,7 +140,7 @@
             <img src={icon} alt="icon" />
         </div>
     {/if}
-    <div class="toast-item__body">
+    <div class={getBodyClassNames()}>
         {#if title}
             <p class="toast-item__title">{title}</p>
         {/if}

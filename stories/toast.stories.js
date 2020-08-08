@@ -3,6 +3,7 @@ import AutoCloseView from './views/AutoCloseView.svelte';
 import PreventDuplicateView from './views/PreventDuplicateView.svelte';
 import CustomCloseButtonView from './views/CustomCloseButtonView.svelte';
 import CustomToastView from './views/CustomToastView.svelte';
+import StyleView from './views/StyleView.svelte';
 
 export default {
     title: 'Usages',
@@ -33,4 +34,9 @@ export const CustomToast = () => ({
     title: 'Custom Toast',
     Component: CustomToastView,
 
+})
+
+export const Style = () => ({
+    title: 'Style Toast',
+    Component: StyleView,
 })

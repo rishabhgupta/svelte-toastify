@@ -23,6 +23,8 @@ class Toast {
             autoClose: 5000,
             preventDuplicate: false,
             closeButton: true,
+            className: null,
+            bodyClassName: null,
             [this.TYPE.SUCCESS]: {
                 color: "#5cb85c",
                 icon: successImage,
@@ -59,6 +61,7 @@ class Toast {
             color: options.color ? options.color : this.config[type].color,
             toastId: options.toastId ? options.toastId : generateToastId(),
             closeButton: options.closeButton !== undefined ? options.closeButton : this.config.closeButton,
+            bodyClassName: options.bodyClassName !== undefined ? options.bodyClassName : this.config.bodyClassName,
         }
 
         if (options.icon === true) {
