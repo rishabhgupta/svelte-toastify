@@ -8,21 +8,13 @@
 
     const hanldleOnClick = (e) => {
         if (e.target.name === "success") {
-            toast.success("This is success message");
+            toast.success(SlotView);
         }
 
         if (e.target.name === "danger") {
             toast.error("This is an error message", {
                 icon: true,
             });
-        }
-
-        if (e.target.name === "info") {
-            toast.info("This is an info message", { icon: true });
-        }
-
-        if (e.target.name === "warning") {
-            toast.warning("This is an warning message", { icon: true });
         }
     };
 </script>
@@ -53,9 +45,9 @@
 <main>
     <h1>Svelte Toastify</h1>
     <p>Click on the button to see the toast</p>
-    <button name="success" on:click={hanldleOnClick}>Success</button>
-    <button name="danger" on:click={hanldleOnClick}>Danger</button>
-    <button name="info" on:click={hanldleOnClick}>Info</button>
-    <button name="warning" on:click={hanldleOnClick}>Warning</button>
+    <button name="success" on:click={hanldleOnClick}>
+        Custom Toast Component
+    </button>
+    <button name="danger" on:click={hanldleOnClick}>Regular Toast</button>
     <ToastContainer />
 </main>

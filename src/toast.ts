@@ -22,6 +22,7 @@ class Toast {
             position: this.POSITION.BOTTOM_RIGHT,
             autoClose: 5000,
             preventDuplicate: false,
+            closeButton: true,
             [this.TYPE.SUCCESS]: {
                 color: "#5cb85c",
                 icon: successImage,
@@ -57,6 +58,7 @@ class Toast {
             autoClose: options.autoClose !== undefined ? options.autoClose : this.config.autoClose,
             color: options.color ? options.color : this.config[type].color,
             toastId: options.toastId ? options.toastId : generateToastId(),
+            closeButton: options.closeButton !== undefined ? options.closeButton : this.config.closeButton,
         }
 
         if (options.icon === true) {
@@ -74,7 +76,8 @@ class Toast {
         }
     }
 
-    success(msg: string, options: ToastOptions) {
+    success(msg: string | Function, options?: ToastOptions) {
+
         if (options && !this.validateOptions(options)) {
             return;
         }
@@ -86,7 +89,7 @@ class Toast {
         toastStore.add(options);
     }
 
-    error(msg: string, options: ToastOptions) {
+    error(msg: string, options?: ToastOptions) {
         if (options && !this.validateOptions(options)) {
             return;
         }
@@ -99,7 +102,7 @@ class Toast {
         toastStore.add(options);
     }
 
-    warning(msg: string, options: ToastOptions) {
+    warning(msg: string, options?: ToastOptions) {
         if (options && !this.validateOptions(options)) {
             return;
         }
@@ -112,7 +115,7 @@ class Toast {
         toastStore.add(options);
     }
 
-    info(msg: string, options: ToastOptions) {
+    info(msg: string, options?: ToastOptions) {
         if (options && !this.validateOptions(options)) {
             return;
         }

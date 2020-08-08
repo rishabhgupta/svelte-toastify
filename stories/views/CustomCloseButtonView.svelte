@@ -1,6 +1,6 @@
 <script lang="typescript">
     import { toast, ToastContainer } from "../../src";
-    import SlotView from "../components/CustomToast.svelte";
+    import CloseButton from "../components/CustomButton.svelte";
 
     toast.configure({
         position: toast.POSITION.TOP_RIGHT,
@@ -8,12 +8,16 @@
 
     const hanldleOnClick = (e) => {
         if (e.target.name === "success") {
-            toast.success("This is success message");
+            toast.success("This is sucess message", {
+                autoClose: false,
+                closeButton: CloseButton,
+            });
         }
 
         if (e.target.name === "danger") {
             toast.error("This is an error message", {
                 icon: true,
+                closeButton: false,
             });
         }
 
@@ -53,9 +57,12 @@
 <main>
     <h1>Svelte Toastify</h1>
     <p>Click on the button to see the toast</p>
-    <button name="success" on:click={hanldleOnClick}>Success</button>
-    <button name="danger" on:click={hanldleOnClick}>Danger</button>
-    <button name="info" on:click={hanldleOnClick}>Info</button>
-    <button name="warning" on:click={hanldleOnClick}>Warning</button>
+    <button name="success" on:click={hanldleOnClick}>
+        Custom Close Button
+    </button>
+    <button name="danger" on:click={hanldleOnClick}>No Close Button</button>
+    <button name="warning" on:click={hanldleOnClick}>
+        Regular Close Button
+    </button>
     <ToastContainer />
 </main>
