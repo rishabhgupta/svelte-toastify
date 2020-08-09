@@ -1,16 +1,26 @@
-<script>
-    export let id;
-    export let title;
-    export let backgroundColor;
-    export let onClose;
-    export let autoClose;
-    export let closeButton;
-    export let icon;
-
-    export let position;
-    import image from "../assets/check.svg";
+<script lang="typescript">
+    import { ToastPosition } from "../utils/types";
     import CloseButton from "./CloseButton.svelte";
-    import { onDestroy, onMount, createEventDispatcher } from "svelte";
+    import { onMount, createEventDispatcher } from "svelte";
+
+    /** id of the toast */
+    export let id: string;
+    /** title of the toast */
+    export let title: string;
+    /** hex code of the background color */
+    export let backgroundColor: string;
+    /** callback function called on deletion of a toast */
+    export let onClose: Function;
+    /** number in milliseconds to show the toast for */
+    export let autoClose: number | Boolean;
+    /** render prop or false */
+    export let closeButton: Function | Boolean;
+    /** icon image or src link */
+    export let icon: any;
+    /** additional class to be applied */
+    export let className: string;
+    /** position of the toast container */
+    export let position: ToastPosition;
 
     const dispatch = createEventDispatcher();
     let deleteTimeOut;
@@ -22,7 +32,7 @@
                 if (onClose) {
                     onClose(id);
                 }
-            }, autoClose);
+            }, autoClose as number);
         }
     });
 
@@ -31,6 +41,14 @@
             return "toast-item animate-right";
         }
         return "toast-item animate-left";
+    };
+
+    const getBodyClassNames = () => {
+        let classname = "toast-item__body";
+        if (className) {
+            classname = `${classname} ${className}`;
+        }
+        return classname;
     };
 </script>
 
@@ -44,7 +62,6 @@
         margin: 0 0 6px;
         padding: 15px 15px;
         margin-bottom: 15px;
-        width: 300px;
         height: auto;
         max-height: 100px;
         border-radius: 5px 5px 5px 5px;
@@ -131,7 +148,7 @@
             <img src={icon} alt="icon" />
         </div>
     {/if}
-    <div class="toast-item__body">
+    <div class={getBodyClassNames()}>
         {#if title}
             <p class="toast-item__title">{title}</p>
         {/if}

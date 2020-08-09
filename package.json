@@ -1,8 +1,8 @@
 {
   "name": "svelte-toastify",
-  "version": "0.0.14",
+  "version": "0.0.22",
   "module": "dist/index.mjs",
-  "main": "dist/index.mjs",
+  "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
     "prepublishOnly": "npm run build",
@@ -50,8 +50,7 @@
     "svelte"
   ],
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "dependencies": {}
 }

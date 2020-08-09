@@ -1,4 +1,4 @@
-export type Id = number | string;
+export type Id = string;
 
 /**
  * Supported Postions of the toast container
@@ -38,6 +38,16 @@ export interface ConfigurationOptions {
      * if custom function renders the custom button
      */
     closeButton?: boolean | Function;
+    /**
+     * className 
+     * if provided will be applied to the toast container
+     */
+    className?: string | null;
+    /**
+     * bodyClassName
+     * if provided is applied to the body of each toast
+     */
+    bodyClassName?: string | null;
 }
 
 export interface ToastOptions extends ConfigurationOptions {

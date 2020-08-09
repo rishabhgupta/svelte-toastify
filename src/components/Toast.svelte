@@ -1,13 +1,18 @@
-<script>
+<script lang="typescript">
     import toast from "../toast";
     import { toastStore } from "../store/toast.store";
     import ToastItem from "./ToastItem.svelte";
+    import { ToastPosition, ToastOptions } from "../utils/types";
 
-    const getClassNames = (pos) => {
-        return `toast-container toast-container--${pos}`;
+    const getClassNames = (pos: ToastPosition): string => {
+        let classname = `toast-container toast-container--${pos}`;
+        if (toast.config.className) {
+            classname = `${classname} ${toast.config.className}`;
+        }
+        return classname;
     };
 
-    let toastStoreValue;
+    let toastStoreValue: ToastOptions[];
 
     const unsubscribe = toastStore.subscribe((value) => {
         toastStoreValue = value;
@@ -25,6 +30,7 @@
         box-sizing: border-box;
         position: fixed;
         z-index: 999999;
+        width: 300px;
     }
     .toast-container--top-right {
         top: 12px;
@@ -60,7 +66,8 @@
             position={toast.config.position}
             onClose={toastr.onClose}
             autoClose={toastr.autoClose}
-            closeButton={toastr.closeButton}>
+            closeButton={toastr.closeButton}
+            className={toastr.bodyClassName}>
             <slot>
                 {#if typeof toastr.body === 'string'}
                     <p class="toast-item__message">{toastr.body}</p>
