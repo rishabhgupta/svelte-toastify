@@ -4,7 +4,7 @@
     /** callback function if passed will be called when toast is closed */
     export let onClose: Function;
     /** render prop orm flase if passed will be rendered instead of X icon */
-    export let closeButton: Function | boolean;
+    export let closeButton: Function | Boolean;
 
     import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();

@@ -1,27 +1,26 @@
-<script>
-    /** id of the toast */
-    export let id;
-    /** title of the toast */
-    export let title;
-    /** hex code of the background color */
-    export let backgroundColor;
-    /** callback function called on deletion of a toast */
-    export let onClose;
-    /** number in milliseconds to show the toast for */
-    export let autoClose;
-    /** render prop or false */
-    export let closeButton;
-    /** icon image or src link */
-    export let icon;
-    /** additional class to be applied */
-    export let className;
-    /** position of the toast container */
-    export let position;
-
-    import image from "../assets/check.svg";
+<script lang="typescript">
+    import { ToastPosition } from "../utils/types";
     import CloseButton from "./CloseButton.svelte";
-    import { onDestroy, onMount, createEventDispatcher } from "svelte";
-    import toast from "../toast";
+    import { onMount, createEventDispatcher } from "svelte";
+
+    /** id of the toast */
+    export let id: string;
+    /** title of the toast */
+    export let title: string;
+    /** hex code of the background color */
+    export let backgroundColor: string;
+    /** callback function called on deletion of a toast */
+    export let onClose: Function;
+    /** number in milliseconds to show the toast for */
+    export let autoClose: number | Boolean;
+    /** render prop or false */
+    export let closeButton: Function | Boolean;
+    /** icon image or src link */
+    export let icon: any;
+    /** additional class to be applied */
+    export let className: string;
+    /** position of the toast container */
+    export let position: ToastPosition;
 
     const dispatch = createEventDispatcher();
     let deleteTimeOut;
@@ -33,7 +32,7 @@
                 if (onClose) {
                     onClose(id);
                 }
-            }, autoClose);
+            }, autoClose as number);
         }
     });
 

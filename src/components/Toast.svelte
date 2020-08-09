@@ -1,7 +1,7 @@
 <script>
     import toast from "../toast";
     import { toastStore } from "../store/toast.store";
-    import ToastItem from "./ToastItem.svelte";
+    import ToastItem from "./ToastItem.svelte";     
 
     const getClassNames = (pos) => {
         let classname = `toast-container toast-container--${pos}`;
