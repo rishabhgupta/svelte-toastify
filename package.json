@@ -3,6 +3,7 @@
   "version": "0.0.26",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
+  "svelte": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
     "tsc": "tsc src/",
