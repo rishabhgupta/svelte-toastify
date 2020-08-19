@@ -61,12 +61,15 @@ export interface ToastOptions extends ConfigurationOptions {
     toastId?: Id;
     /**
      * Title of the toast
-     * @todo Add slot support
      */
     title?: string;
     /**
+     * kind of toast
+     * @todo add toast types
+     */
+    type?: string;
+    /**
      * Body of the toast
-     * @todo Add slot support
      */
     body?: string | Function;
     /**
