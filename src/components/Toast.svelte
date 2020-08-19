@@ -60,7 +60,7 @@
         <ToastItem
             id={toastr.toastId}
             title={toastr.title}
-            backgroundColor={toastr.color}
+            type={toastr.type}
             icon={toastr.icon}
             on:delete={onDelete}
             position={toast.config.position}

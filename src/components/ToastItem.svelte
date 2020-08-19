@@ -2,13 +2,12 @@
     import { ToastPosition } from "../utils/types";
     import CloseButton from "./CloseButton.svelte";
     import { onMount, createEventDispatcher } from "svelte";
-
     /** id of the toast */
     export let id: string;
     /** title of the toast */
     export let title: string;
-    /** hex code of the background color */
-    export let backgroundColor: string;
+    /** type of the toast */
+    export let type: string;
     /** callback function called on deletion of a toast */
     export let onClose: Function;
     /** number in milliseconds to show the toast for */
@@ -21,6 +20,15 @@
     export let className: string;
     /** position of the toast container */
     export let position: ToastPosition;
+
+    const getClassNames = (type: string) => {
+        if (position === "top-right" || position === "bottom-right") {
+            return `toast-item animate-right toast-item--${type}`;
+        }
+        return `toast-item animate-left toast-item--${type}`;
+    };
+
+    $: computedClassName = getClassNames(type);
 
     const dispatch = createEventDispatcher();
     let deleteTimeOut;
@@ -35,13 +43,6 @@
             }, autoClose as number);
         }
     });
-
-    const getClassNames = () => {
-        if (position === "top-right" || position === "bottom-right") {
-            return "toast-item animate-right";
-        }
-        return "toast-item animate-left";
-    };
 
     const getBodyClassNames = () => {
         let classname = "toast-item__body";
@@ -140,15 +141,41 @@
             transform: translateX(0);
         }
     }
+
+    /** Toast Specific classes **/
+    .toast-item--success {
+        background-color: #5cb85c;
+        color: white;
+    }
+
+    .toast-item--error {
+        background-color: #d9534f;
+        color: white;
+    }
+
+    .toast-item--warning {
+        background-color: #f0ad4e;
+        color: white;
+    }
+
+    .toast-item--info {
+        background-color: #5bc0de;
+        color: white;
+    }
+
+    .toast-item--default {
+        background-color: white;
+        color: black;
+    }
 </style>
 
-<div class={getClassNames()} style="background-color: {backgroundColor}">
+<div class={computedClassName}>
     {#if icon}
         <div class="toast-item__image">
             <img src={icon} alt="icon" />
         </div>
     {/if}
-    <div class={getBodyClassNames()}>
+    <div class="toast-item__body">
         {#if title}
             <p class="toast-item__title">{title}</p>
         {/if}
@@ -156,7 +183,7 @@
     </div>
     {#if closeButton}
         <div class="toast-item__buttons">
-            <CloseButton {id} on:delete {onClose} {closeButton} />
+            <CloseButton {id} on:delete {onClose} {closeButton} {type} />
         </div>
     {/if}
 

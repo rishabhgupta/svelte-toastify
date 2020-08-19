@@ -1,47 +1,20 @@
 import { toastStore } from './store/toast.store';
-import successImage from "./assets/check.svg";
-import errorImage from "./assets/error.svg";
-import infoImage from "./assets/info.svg"
-import warningImage from "./assets/warning.svg";
+
 import { generateToastId } from "./utils/helper";
 import { ConfigurationOptions, ToastOptions } from './utils/types';
-import { POSITION, TYPE } from './utils/constants';
+import { POSITION, TYPE, DEFAULT_CONFIG } from './utils/constants';
 
 let instance: Toast;
 
 class Toast {
 
-    public config: ConfigurationOptions;
+    public config: ConfigurationOptions = DEFAULT_CONFIG;
     private idMap: { [key: string]: boolean };
 
     POSITION = POSITION;
     TYPE = TYPE;
 
     constructor() {
-        this.config = {
-            position: this.POSITION.BOTTOM_RIGHT,
-            autoClose: 5000,
-            preventDuplicate: false,
-            closeButton: true,
-            className: null,
-            bodyClassName: null,
-            [this.TYPE.SUCCESS]: {
-                color: "#5cb85c",
-                icon: successImage,
-            },
-            [this.TYPE.ERROR]: {
-                color: "#d9534f",
-                icon: errorImage,
-            },
-            [this.TYPE.WARNING]: {
-                color: "#f0ad4e",
-                icon: warningImage,
-            },
-            [this.TYPE.INFO]: {
-                color: "#5bc0de",
-                icon: infoImage,
-            }
-        }
         this.idMap = {};
     }
 
@@ -58,7 +31,6 @@ class Toast {
         options = {
             ...options,
             autoClose: options.autoClose !== undefined ? options.autoClose : this.config.autoClose,
-            color: options.color ? options.color : this.config[type].color,
             toastId: options.toastId ? options.toastId : generateToastId(),
             closeButton: options.closeButton !== undefined ? options.closeButton : this.config.closeButton,
             bodyClassName: options.bodyClassName !== undefined ? options.bodyClassName : this.config.bodyClassName,
@@ -87,45 +59,63 @@ class Toast {
 
         options = this.mergeOptions(this.TYPE.SUCCESS, {
             ...options,
-            body: msg
+            body: msg,
+            type: TYPE.SUCCESS,
         });
         toastStore.add(options);
     }
 
-    error(msg: string, options?: ToastOptions) {
+    error(msg: string | Function, options?: ToastOptions) {
         if (options && !this.validateOptions(options)) {
             return;
         }
 
         options = this.mergeOptions(this.TYPE.ERROR, {
             ...options,
-            body: msg
+            body: msg,
+            type: TYPE.ERROR,
         });
 
         toastStore.add(options);
     }
 
-    warning(msg: string, options?: ToastOptions) {
+    warning(msg: string | Function, options?: ToastOptions) {
         if (options && !this.validateOptions(options)) {
             return;
         }
 
         options = this.mergeOptions(this.TYPE.WARNING, {
             ...options,
-            body: msg
+            body: msg,
+            type: TYPE.WARNING,
         });
 
         toastStore.add(options);
     }
 
-    info(msg: string, options?: ToastOptions) {
+    info(msg: string | Function, options?: ToastOptions) {
         if (options && !this.validateOptions(options)) {
             return;
         }
 
         options = this.mergeOptions(this.TYPE.INFO, {
             ...options,
-            body: msg
+            body: msg,
+            type: TYPE.INFO,
+        });
+
+        toastStore.add(options);
+    }
+
+    default(msg: string | Function, options?: ToastOptions) {
+        if (options && !this.validateOptions(options)) {
+            return;
+        }
+
+        options = this.mergeOptions(this.TYPE.DEFAULT, {
+            ...options,
+            body: msg,
+            type: TYPE.DEFAULT,
         });
 
         toastStore.add(options);

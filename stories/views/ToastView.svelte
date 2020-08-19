@@ -24,6 +24,10 @@
         if (e.target.name === "warning") {
             toast.warning("This is an warning message", { icon: true });
         }
+
+        if (e.target.name === "default") {
+            toast.default("This is a default message.");
+        }
     };
 </script>
 
@@ -57,5 +61,6 @@
     <button name="danger" on:click={hanldleOnClick}>Danger</button>
     <button name="info" on:click={hanldleOnClick}>Info</button>
     <button name="warning" on:click={hanldleOnClick}>Warning</button>
+    <button name="default" on:click={hanldleOnClick}>Default</button>
     <ToastContainer />
 </main>

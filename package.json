@@ -1,10 +1,12 @@
 {
   "name": "svelte-toastify",
-  "version": "0.0.22",
+  "version": "0.0.26",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
+  "svelte": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
+    "tsc": "tsc src/",
     "prepublishOnly": "npm run build",
     "test": "jest",
     "start": "start-storybook -p 6006",
