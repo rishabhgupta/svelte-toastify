@@ -5,10 +5,22 @@
     export let onClose: Function;
     /** render prop orm flase if passed will be rendered instead of X icon */
     export let closeButton: Function | Boolean;
+    /** type of toast in case of default toast dark cross button is shown */
+    export let type: string;
 
     import { createEventDispatcher } from "svelte";
+    import { TYPE } from "../utils/constants";
+
     const dispatch = createEventDispatcher();
 
+    const getClassName = (type: string): string => {
+        if (type === TYPE.DEFAULT) {
+            return "close-button close-button--default";
+        }
+        return "close-button";
+    };
+
+    $: className = getClassName(type);
     /*
      * on close button handler
      * dispatch delete event with id to delete the toast
@@ -23,7 +35,7 @@
 </script>
 
 <style>
-    button {
+    .close-button {
         position: relative;
         float: right;
         font-weight: 700;
@@ -40,6 +52,10 @@
         border: 0;
     }
 
+    .close-button--default {
+        color: #000;
+        opacity: 0.3;
+    }
     svg {
         fill: currentColor;
         height: 16px;
@@ -47,7 +63,11 @@
     }
 </style>
 
-<button type="button" aria-label="close" on:click={onClickHandler}>
+<button
+    type="button"
+    class={className}
+    aria-label="close"
+    on:click={onClickHandler}>
     {#if typeof closeButton === 'function'}
         <svelte:component this={closeButton} />
     {:else}
