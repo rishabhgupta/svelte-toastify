@@ -8,11 +8,13 @@
 
     const hanldleOnClick = (e) => {
         if (e.target.name === "success") {
-            toast.success(SlotView);
+            toast.default(SlotView, {
+                autoClose: false,
+            });
         }
 
         if (e.target.name === "danger") {
-            toast.error("This is an error message", {
+            toast.success("This is an error message", {
                 icon: true,
             });
         }
