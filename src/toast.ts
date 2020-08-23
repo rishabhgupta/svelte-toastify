@@ -107,7 +107,7 @@ class Toast {
         return options.toastId;
     }
 
-    info(msg: string | Function, options?: ToastOptions) {
+    info(msg: string | Function, options?: ToastOptions): Id {
         if (options && !this.validateOptions(options)) {
             return;
         }
@@ -122,7 +122,7 @@ class Toast {
         return options.toastId;
     }
 
-    default(msg: string | Function, options?: ToastOptions) {
+    default(msg: string | Function, options?: ToastOptions): Id {
         if (options && !this.validateOptions(options)) {
             return;
         }
