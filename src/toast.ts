@@ -139,9 +139,11 @@ class Toast {
 
     delete(toastId: string) {
         // remove the toastid from map
-        delete this.idMap[toastId];
-        // delete toast from store
-        toastStore.remove(toastId);
+        if (this.idMap[toastId]) {
+            delete this.idMap[toastId];
+            // delete toast from store
+            toastStore.remove(toastId);
+        }
     }
 }
 
