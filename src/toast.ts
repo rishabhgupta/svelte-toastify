@@ -1,21 +1,32 @@
 import { toastStore } from './store/toast.store';
 
 import { generateToastId } from "./utils/helper";
-import { ConfigurationOptions, ToastOptions } from './utils/types';
+import { ConfigurationOptions, ToastOptions, Id } from './utils/types';
 import { POSITION, TYPE, DEFAULT_CONFIG } from './utils/constants';
 
-let instance: Toast;
-
+/**
+ * Singleton Class Toast
+ */
 class Toast {
 
     public config: ConfigurationOptions = DEFAULT_CONFIG;
     private idMap: { [key: string]: boolean };
+    // store instance reference if already intantiated
+    private static instance: Toast;
 
-    POSITION = POSITION;
-    TYPE = TYPE;
+    readonly POSITION = POSITION;
+    readonly TYPE = TYPE;
 
-    constructor() {
+    private constructor() {
         this.idMap = {};
+    }
+
+    static getInstance() {
+        if (Toast.instance) {
+            return Toast.instance;
+        }
+        Toast.instance = new Toast();
+        return Toast.instance;
     }
 
     private validateOptions(options: ToastOptions): boolean {
@@ -51,7 +62,7 @@ class Toast {
         }
     }
 
-    success(msg: string | Function, options?: ToastOptions) {
+    success(msg: string | Function, options?: ToastOptions): Id {
 
         if (options && !this.validateOptions(options)) {
             return;
@@ -63,9 +74,10 @@ class Toast {
             type: TYPE.SUCCESS,
         });
         toastStore.add(options);
+        return options.toastId;
     }
 
-    error(msg: string | Function, options?: ToastOptions) {
+    error(msg: string | Function, options?: ToastOptions): Id {
         if (options && !this.validateOptions(options)) {
             return;
         }
@@ -77,9 +89,10 @@ class Toast {
         });
 
         toastStore.add(options);
+        return options.toastId;
     }
 
-    warning(msg: string | Function, options?: ToastOptions) {
+    warning(msg: string | Function, options?: ToastOptions): Id {
         if (options && !this.validateOptions(options)) {
             return;
         }
@@ -91,6 +104,7 @@ class Toast {
         });
 
         toastStore.add(options);
+        return options.toastId;
     }
 
     info(msg: string | Function, options?: ToastOptions) {
@@ -105,6 +119,7 @@ class Toast {
         });
 
         toastStore.add(options);
+        return options.toastId;
     }
 
     default(msg: string | Function, options?: ToastOptions) {
@@ -119,6 +134,7 @@ class Toast {
         });
 
         toastStore.add(options);
+        return options.toastId;
     }
 
     delete(toastId: string) {
@@ -129,14 +145,5 @@ class Toast {
     }
 }
 
-const Singleton = () => {
-    if (instance) {
-        return instance;
-    }
-
-    instance = new Toast();
-    return instance;
-}
-
-const toast = Singleton();
+const toast = Toast.getInstance();
 export default toast;
