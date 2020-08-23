@@ -4,6 +4,7 @@ import PreventDuplicateView from './views/PreventDuplicateView.svelte';
 import CustomCloseButtonView from './views/CustomCloseButtonView.svelte';
 import CustomToastView from './views/CustomToastView.svelte';
 import StyleView from './views/StyleView.svelte';
+import DeleteToastView from './views/DeleteToast.svelte';
 
 export default {
     title: 'Usages',
@@ -39,4 +40,9 @@ export const CustomToast = () => ({
 export const Style = () => ({
     title: 'Style Toast',
     Component: StyleView,
+})
+
+export const DeleteToast = () => ({
+    title: 'Delete Toast',
+    Component: DeleteToastView,
 })
