@@ -1,4 +1,4 @@
-export type Id = string;
+export type Id = string | number;
 
 /**
  * Supported Postions of the toast container
