@@ -4,17 +4,17 @@ import '@testing-library/jest-dom/extend-expect'
 
 import { render, fireEvent } from '@testing-library/svelte'
 
-import Component from '../src/Component.svelte'
+import CloseButton from '../src/components/CloseButton.svelte'
 
 describe('Component', () => {
   it('shows proper heading when rendered', () => {
-    const { getByText } = render(Component, { name: 'World' })
+    const { debug } = render(CloseButton, { id: 'World', closeButton: true, onClose: () => { }, type: "success" })
 
-    expect(getByText('Hello World!')).toBeInTheDocument()
+    debug();
   });
 
   // Note: This is as an async test as we are using `fireEvent`
-  it('changes button text on click', async () => {
+  xit('changes button text on click', async () => {
     const { getByText } = render(Component, { name: 'World' })
     const button = getByText('Button')
 
