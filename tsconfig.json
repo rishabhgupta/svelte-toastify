@@ -10,7 +10,8 @@
     "compilerOptions": {
         "types": [
             "svelte"
-        ]
+        ],
+        "esModuleInterop": true,
     },
     "files": [
         "./@types/index.d.ts"
