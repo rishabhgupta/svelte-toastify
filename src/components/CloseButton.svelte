@@ -1,10 +1,10 @@
 <script lang="typescript">
     /** id of the toast */
-    export let id: string;
+    export let id: number | string;
     /** callback function if passed will be called when toast is closed */
-    export let onClose: Function;
+    export let onClose: Function = () => {};
     /** render prop orm flase if passed will be rendered instead of X icon */
-    export let closeButton: Function | Boolean;
+    export let closeButton: Function | Boolean = true;
     /** type of toast in case of default toast dark cross button is shown */
     export let type: string;
 
@@ -78,5 +78,4 @@
                 3.75z" />
         </svg>
     {/if}
-
 </button>
