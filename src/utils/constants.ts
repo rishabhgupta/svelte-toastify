@@ -1,30 +1,29 @@
 import successImage from "../assets/check.svg";
 import errorImage from "../assets/error.svg";
-import infoImage from "../assets/info.svg"
+import infoImage from "../assets/info.svg";
 import warningImage from "../assets/warning.svg";
-
 
 /**
  * Toast Positions
  */
-export const POSITION = {
-    TOP_LEFT: 'top-left',
-    TOP_RIGHT: 'top-right',
-    TOP_CENTER: 'top-center',
-    BOTTOM_LEFT: 'bottom-left',
-    BOTTOM_RIGHT: 'bottom-right',
-    BOTTOM_CENTER: 'bottom-center'
-} as const;
+export enum POSITION {
+    TOP_LEFT = "top-left",
+    TOP_RIGHT = "top-right",
+    TOP_CENTER = "top-center",
+    BOTTOM_LEFT = "bottom-left",
+    BOTTOM_RIGHT = "bottom-right",
+    BOTTOM_CENTER = "bottom-center",
+}
 
 /**
  * Toast Types
  */
 export const TYPE = {
-    INFO: 'info',
-    SUCCESS: 'success',
-    WARNING: 'warning',
-    ERROR: 'error',
-    DEFAULT: 'default',
+    INFO: "info",
+    SUCCESS: "success",
+    WARNING: "warning",
+    ERROR: "error",
+    DEFAULT: "default",
 };
 
 /**
@@ -49,5 +48,5 @@ export const DEFAULT_CONFIG = {
     },
     [TYPE.INFO]: {
         icon: infoImage,
-    }
-}
+    },
+};

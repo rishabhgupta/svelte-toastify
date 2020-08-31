@@ -1,13 +1,15 @@
+import { POSITION } from "./constants";
+
 export type Id = string | number;
 
 /**
  * Supported Postions of the toast container
  */
 export type ToastPosition =
-    | 'top-right'
-    | 'top-left'
-    | 'bottom-right'
-    | 'bottom-left';
+    | "top-right"
+    | "top-left"
+    | "bottom-right"
+    | "bottom-left";
 
 /**
  * Toast Configuration Options
@@ -19,7 +21,7 @@ export interface ConfigurationOptions {
      * `One of: 'top-right', 'top-center', 'top-left', 'bottom-right', 'bottom-center', 'bottom-left'`
      * `Default: 'top-right'`
      */
-    position?: ToastPosition;
+    position?: POSITION;
     /**
      * Set the delay in ms to close the toast automatically.
      * Use `false` to prevent the toast from closing.
@@ -27,7 +29,7 @@ export interface ConfigurationOptions {
      */
     autoClose?: number | false;
     /**
-     * If true prevents duplicate toasts 
+     * If true prevents duplicate toasts
      * uses toastid to check if the toast is currently being displayed by the same id.
      * Default: false
      */
@@ -39,7 +41,7 @@ export interface ConfigurationOptions {
      */
     closeButton?: boolean | Function;
     /**
-     * className 
+     * className
      * if provided will be applied to the toast container
      */
     className?: string | null;

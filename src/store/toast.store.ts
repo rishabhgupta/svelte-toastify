@@ -1,5 +1,5 @@
-import { writable } from 'svelte/store';
-import { ToastOptions } from '../utils/types';
+import { writable } from "svelte/store";
+import { ToastOptions } from "../utils/types";
 
 /**
  * Store will
@@ -15,25 +15,24 @@ function Store() {
     const { subscribe, set, update } = writable([]);
 
     function add(toastObj: ToastOptions): void {
-        update(list => {
+        update((list) => {
             return [...list, toastObj];
         });
     }
 
     function remove(id: string): void {
-        update(list => {
+        update((list) => {
             const index = list.findIndex((e) => e.toastId === id);
             list.splice(index, 1);
             return [...list];
-        })
+        });
     }
 
     return {
         subscribe,
         add,
         remove,
-    }
+    };
 }
 
 export const toastStore = Store();
-
