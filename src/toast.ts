@@ -1,14 +1,13 @@
-import { toastStore } from './store/toast.store';
+import { toastStore } from "./store/toast.store";
 
-import { generateToastId } from "./utils/helper";
-import { ConfigurationOptions, ToastOptions, Id } from './utils/types';
-import { POSITION, TYPE, DEFAULT_CONFIG } from './utils/constants';
+import { generateToastId, validateConfig } from "./utils/helper";
+import { ConfigurationOptions, ToastOptions, Id } from "./utils/types";
+import { POSITION, TYPE, DEFAULT_CONFIG } from "./utils/constants";
 
 /**
  * Singleton Class Toast
  */
 class Toast {
-
     public config: ConfigurationOptions = DEFAULT_CONFIG;
     private idMap: { [key: string]: boolean };
     // store instance reference if already intantiated
@@ -41,11 +40,20 @@ class Toast {
     private mergeOptions(type: string, options: ToastOptions): ToastOptions {
         options = {
             ...options,
-            autoClose: options.autoClose !== undefined ? options.autoClose : this.config.autoClose,
+            autoClose:
+                options.autoClose !== undefined
+                    ? options.autoClose
+                    : this.config.autoClose,
             toastId: options.toastId ? options.toastId : generateToastId(),
-            closeButton: options.closeButton !== undefined ? options.closeButton : this.config.closeButton,
-            bodyClassName: options.bodyClassName !== undefined ? options.bodyClassName : this.config.bodyClassName,
-        }
+            closeButton:
+                options.closeButton !== undefined
+                    ? options.closeButton
+                    : this.config.closeButton,
+            bodyClassName:
+                options.bodyClassName !== undefined
+                    ? options.bodyClassName
+                    : this.config.bodyClassName,
+        };
 
         if (options.icon === true) {
             options.icon = this.config[type].icon;
@@ -56,14 +64,18 @@ class Toast {
     }
 
     configure(configObj: ConfigurationOptions) {
+        const { valid, msg } = validateConfig(configObj);
+        if (!valid && msg) {
+            throw new Error(msg);
+        }
+
         this.config = {
             ...this.config,
             ...configObj,
-        }
+        };
     }
 
     success(msg: string | Function, options?: ToastOptions): Id {
-
         if (options && !this.validateOptions(options)) {
             return;
         }
