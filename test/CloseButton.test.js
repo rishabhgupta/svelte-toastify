@@ -6,7 +6,7 @@ import { render, fireEvent } from '@testing-library/svelte'
 
 import CloseButton from '../src/components/CloseButton.svelte'
 
-describe('Component', () => {
+xdescribe('Component', () => {
   it('shows proper heading when rendered', () => {
     const { debug } = render(CloseButton, { id: 'World', closeButton: true, onClose: () => { }, type: "success" })
 
