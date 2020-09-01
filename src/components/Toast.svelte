@@ -2,9 +2,10 @@
     import toast from "../toast";
     import { toastStore } from "../store/toast.store";
     import ToastItem from "./ToastItem.svelte";
-    import { ToastPosition, ToastOptions } from "../utils/types";
+    import { ToastOptions } from "../utils/types";
+    import { POSITION } from "../utils/constants";
 
-    const getClassNames = (pos: ToastPosition): string => {
+    const getClassNames = (pos: POSITION): string => {
         let classname = `toast-container toast-container--${pos}`;
         if (toast.config.className) {
             classname = `${classname} ${toast.config.className}`;

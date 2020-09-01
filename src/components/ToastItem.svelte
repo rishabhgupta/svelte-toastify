@@ -2,8 +2,9 @@
     import { ToastPosition } from "../utils/types";
     import CloseButton from "./CloseButton.svelte";
     import { onMount, createEventDispatcher } from "svelte";
+    import { POSITION } from "../utils/constants";
     /** id of the toast */
-    export let id: string;
+    export let id: number | string;
     /** title of the toast */
     export let title: string;
     /** type of the toast */
@@ -19,7 +20,7 @@
     /** additional class to be applied */
     export let className: string;
     /** position of the toast container */
-    export let position: ToastPosition;
+    export let position: POSITION;
 
     const getClassNames = (type: string) => {
         if (position === "top-right" || position === "bottom-right") {
@@ -171,9 +172,7 @@
 
 <div class={computedClassName}>
     {#if icon}
-        <div class="toast-item__image">
-            <img src={icon} alt="icon" />
-        </div>
+        <div class="toast-item__image"><img src={icon} alt="icon" /></div>
     {/if}
     <div class="toast-item__body">
         {#if title}
@@ -186,5 +185,4 @@
             <CloseButton {id} on:delete {onClose} {closeButton} {type} />
         </div>
     {/if}
-
 </div>
